@@ -359,9 +359,6 @@ npm run test:e2e
 npm run build
 ```
 
----
----
-
-## 14. License
+## 13. License
 
 RaptorOS is licensed under the **Apache License, Version 2.0**. See the [LICENSE](file:///LICENSE) file for details.
