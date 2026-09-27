@@ -360,17 +360,6 @@ npm run build
 ```
 
 ---
-
-## 13. Dogfood 2026 Acceptance Documentation
-
-- **[Acceptance Report](file:///docs/ACCEPTANCE-REPORT.md)**: Full T1, T2, T3, T4 requirement compliance matrix with evidence citations and bonus assessments.
-- **[Threat Model](file:///docs/THREAT-MODEL.md)**: Complete asset-threat-mitigation matrix for credentials, sessions, RBAC, SSRF, XSS, and keys.
-- **[Security Audit](file:///docs/SECURITY-AUDIT.md)**: In-depth code-level vulnerability assessment and remediation findings.
-- **[Architecture Document](file:///docs/ARCHITECTURE.md)**: Detailed modular monolith layers, invariants, and API-first flow.
-- **[REST API Specification](file:///docs/API.md)**: Endpoints inventory, authentication, DTOs, and OpenAPI specification.
-- **[Webhooks Specification](file:///docs/WEBHOOKS.md)**: HMAC-SHA256 signatures, SSRF protection, delivery tracking, and retries.
-- **[Certificates Specification](file:///docs/CERTIFICATES.md)**: High-entropy verification IDs and public verification portal.
-
 ---
 
 ## 14. License
