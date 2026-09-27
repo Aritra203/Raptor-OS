@@ -8,7 +8,7 @@
     "dev": "node -r ./scripts/patch-windows-fs.cjs ./node_modules/next/dist/bin/next dev",
     "build": "node -r ./scripts/patch-windows-fs.cjs ./node_modules/next/dist/bin/next build",
     "start": "node -r ./scripts/patch-windows-fs.cjs ./node_modules/next/dist/bin/next start",
-    "lint": "eslint .",
+    "lint": "node -r ./scripts/patch-windows-fs.cjs ./node_modules/eslint/bin/eslint.js .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:unit": "vitest run tests/unit",

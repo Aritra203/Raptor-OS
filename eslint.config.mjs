@@ -21,6 +21,7 @@ const eslintConfig = [
       "next-env.d.ts",
       "**/[slug]/**",
       "app/(platform)/events/*slug*/**",
+      "components/shared/**",
     ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),

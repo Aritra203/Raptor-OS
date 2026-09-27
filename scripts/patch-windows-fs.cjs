@@ -52,7 +52,7 @@ if (fs.promises && fs.promises.readlink) {
 }
 
 // Handle ExFAT ghost directories that throw EPERM on scandir/readdir
-const isGhostSlug = (p) => typeof p === "string" && p.includes("[slug]");
+const isGhostSlug = (p) => typeof p === "string" && (p.includes("[slug]") || p.includes("shared"));
 
 const origReaddirSync = fs.readdirSync;
 fs.readdirSync = function (path, options) {
