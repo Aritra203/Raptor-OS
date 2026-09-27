@@ -42,26 +42,26 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface-1/95 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 w-full min-w-0">
         {/* Left: Brand & Main Navigation */}
-        <div className="flex items-center gap-6 lg:gap-8">
+        <div className="flex items-center gap-3 xl:gap-5 min-w-0">
           {/* Mobile hamburger */}
           <button
             type="button"
             onClick={onMenuToggle}
-            className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-surface-2 transition-colors lg:hidden cursor-pointer"
+            className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-surface-2 transition-colors lg:hidden cursor-pointer shrink-0"
             aria-label="Open mobile navigation"
           >
             <Menu className="h-5 w-5" />
           </button>
 
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 group-hover:bg-emerald-500/25 transition-colors">
+          <Link href="/" className="flex items-center gap-2 group shrink-0">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 border border-primary/25 text-primary group-hover:bg-primary/20 transition-colors">
               <span className="font-bold text-xs tracking-tighter">R</span>
             </div>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-sm font-bold tracking-tight text-foreground">
+              <span className="text-base font-bold tracking-wider text-foreground font-pixel">
                 RaptorOS
               </span>
               <span className="text-[10px] font-mono text-muted-foreground/60 hidden sm:inline">
@@ -71,7 +71,7 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 min-w-0" aria-label="Main Navigation">
             {NAV_ITEMS.map((item) => {
               const active = isActive(item.href);
               const Icon = item.icon;
@@ -81,16 +81,16 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-150 select-none",
+                    "flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium transition-all duration-150 select-none whitespace-nowrap",
                     active
-                      ? "bg-surface-2 text-foreground font-semibold border border-border/60 shadow-xs"
+                      ? "bg-surface-2 text-foreground font-semibold border border-border shadow-xs"
                       : "text-muted-foreground hover:bg-surface-2/60 hover:text-foreground"
                   )}
                 >
                   <Icon
                     className={cn(
-                      "h-3.5 w-3.5 transition-colors",
-                      active ? "text-emerald-400" : "text-muted-foreground/70"
+                      "h-3.5 w-3.5 transition-colors shrink-0",
+                      active ? "text-primary" : "text-muted-foreground/70"
                     )}
                   />
                   <span>{item.name}</span>
@@ -101,17 +101,18 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
         </div>
 
         {/* Right: Actions, Search, Theme Toggle & User Menu */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Quick Search (⌘K) */}
           <button
             type="button"
             onClick={onSearchClick}
-            className="hidden sm:flex items-center gap-2 rounded-lg border border-border/80 bg-background/60 px-2.5 py-1.5 text-xs text-muted-foreground cursor-pointer hover:border-primary/40 hover:text-foreground transition-all"
+            className="flex items-center gap-1.5 rounded-lg border border-border/80 bg-background/60 px-2 py-1.5 text-xs text-muted-foreground cursor-pointer hover:border-primary/40 hover:text-foreground transition-all shrink-0"
             aria-label="Open command search"
+            title="Search... (⌘K)"
           >
             <Search className="h-3.5 w-3.5 text-muted-foreground/70" />
-            <span className="text-xs">Search...</span>
-            <kbd className="ml-1 rounded bg-surface-2 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground/80 border border-border/70">
+            <span className="hidden 2xl:inline text-xs">Search...</span>
+            <kbd className="rounded bg-surface-2 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground/80 border border-border/70">
               ⌘K
             </kbd>
           </button>
@@ -119,9 +120,9 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
           {/* Quick Action: New Hackathon */}
           <Link
             href="/events/new"
-            className="hidden md:inline-flex items-center gap-1.5 rounded-lg bg-surface-2 hover:bg-surface-3 border border-border/80 px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors"
+            className="hidden 2xl:inline-flex items-center gap-1.5 rounded-lg bg-surface-2 hover:bg-surface-3 border border-border/80 px-2.5 py-1.5 text-xs font-medium text-foreground transition-colors shrink-0"
           >
-            <Plus className="h-3.5 w-3.5 text-emerald-400" />
+            <Plus className="h-3.5 w-3.5 text-primary" />
             <span>Host Hackathon</span>
           </Link>
 

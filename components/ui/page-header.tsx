@@ -27,7 +27,7 @@ export function PageHeader({
         <div className="space-y-1">
           <div className="flex items-center gap-3">
             {icon && <div className="text-primary">{icon}</div>}
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">
+            <h1 className="text-2xl font-bold tracking-wider text-foreground font-pixel">
               {title}
             </h1>
             {badge && <div>{badge}</div>}

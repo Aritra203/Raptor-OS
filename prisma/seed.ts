@@ -762,6 +762,59 @@ async function main(): Promise<void> {
       publishedAt: new Date("2026-02-21T12:00:00Z"),
     },
   });
+
+  // Global AI Sprint (event2) Official Published Results
+  const snapshot2 = await prisma.resultSnapshot.upsert({
+    where: { id: "snap_event2_v1" },
+    update: { status: "PUBLISHED" },
+    create: {
+      id: "snap_event2_v1",
+      eventId: event2.id,
+      version: 1,
+      status: "PUBLISHED",
+      name: "Global AI Sprint Official Results",
+      notes: "Official final standings ratified by organizers.",
+      createdById: "usr_org_1",
+      finalizedAt: new Date("2026-01-29T12:00:00Z"),
+      publishedAt: new Date("2026-01-29T12:00:00Z"),
+    },
+  });
+
+  await prisma.projectResult.upsert({
+    where: { snapshotId_submissionId: { snapshotId: snapshot2.id, submissionId: submissionLocked.id } },
+    update: { rank: 1 },
+    create: {
+      id: "pres_omni_first",
+      snapshotId: snapshot2.id,
+      submissionId: submissionLocked.id,
+      rank: 1,
+      trackRank: 1,
+      rawAggregateScore: 9.40,
+      normalizedScore: 95.80,
+      finalScore: 95.80,
+      scoreCount: 1,
+      metadata: {
+        title: "OmniAgent: Self-Directed Orchestration",
+        teamName: "OmniAgent Labs",
+      },
+    },
+  });
+
+  await prisma.result.upsert({
+    where: { eventId_submissionId: { eventId: event2.id, submissionId: submissionLocked.id } },
+    update: { rank: 1, isPublished: true },
+    create: {
+      id: "res_omni_first",
+      eventId: event2.id,
+      submissionId: submissionLocked.id,
+      rank: 1,
+      rawAggregateScore: 9.40,
+      normalizedScore: 95.80,
+      finalScore: 95.80,
+      isPublished: true,
+      publishedAt: new Date("2026-01-29T12:00:00Z"),
+    },
+  });
   console.info("  [SEED] Configured published results and result snapshots.");
 
   // 14. Phase 8: Community Voting, Comments & Anti-Abuse

@@ -88,6 +88,19 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
+        pixel: [
+          "var(--font-pixelify)",
+          "'Pixelify Sans'",
+          "'Silkscreen'",
+          "cursive",
+          "sans-serif",
+        ],
+        silkscreen: [
+          "var(--font-silkscreen)",
+          "'Silkscreen'",
+          "'Press Start 2P'",
+          "monospace",
+        ],
         mono: [
           "JetBrains Mono",
           "ui-monospace",

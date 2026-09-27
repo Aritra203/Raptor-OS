@@ -57,88 +57,86 @@ export default async function HomePage() {
   const publicEvents = await eventService.getPublicEvents().catch(() => []);
 
   return (
-    <div className="space-y-16 pb-20 max-w-6xl mx-auto">
-      {/* ── Hero Section (Devfolio / ETHGlobal Hacker Atmosphere) ── */}
-      <section className="relative overflow-hidden rounded-3xl border border-border/80 bg-surface-1/60 p-6 sm:p-12 lg:p-16 shadow-2xl">
-        {/* Cyber grid pattern overlay */}
-        <div className="absolute inset-0 bg-grid-cyber opacity-70 pointer-events-none" />
+    <div className="space-y-16 pb-20 max-w-6xl mx-auto w-full min-w-0">
+      {/* ── Hero Section (Classic Retro Studio / Hacker Atmosphere) ── */}
+      <section className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8 md:p-10 shadow-sm w-full min-w-0">
+        {/* Subtle retro grid pattern */}
+        <div className="absolute inset-0 bg-grid-cyber pointer-events-none opacity-60" />
 
-        {/* Ambient radial glows */}
-        <div className="absolute -top-32 -left-32 h-80 w-80 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 space-y-8">
+        <div className="relative z-10 space-y-6 max-w-4xl w-full min-w-0">
           {/* Status Beacon & Tags */}
           <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400 shadow-xs">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-[11px] font-medium text-amber-700 dark:text-amber-400 font-mono uppercase tracking-wider">
+              <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
               <span>HACKING ACTIVE · DOGFOOD 2026</span>
             </div>
-            <span className="text-xs font-mono text-muted-foreground/80 bg-surface-2/80 px-2.5 py-1 rounded-full border border-border/60">
+            <span className="text-[11px] font-mono text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-full border border-border">
               v0.1.0 · Self-Hostable
             </span>
           </div>
 
-          {/* Punchy Hacker Tagline */}
-          <div className="space-y-4 max-w-3xl">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.05]">
+          {/* Punchy Hacker Tagline - Scaled for Laptop and Mobile legibility */}
+          <div className="space-y-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold tracking-tight text-foreground font-pixel leading-snug">
               BUILD. SHIP. <br />
-              <span className="text-gradient">JUDGE WITH FAIRNESS.</span>
+              <span className="text-gradient">
+                JUDGE WITH FAIRNESS.
+              </span>
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl font-normal">
+            <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl">
               RaptorOS is the self-hostable, offline-first operating system for modern hackathons. From team formation to double-blind rubric evaluations and verifiable cryptographic evidence.
             </p>
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center gap-2.5 pt-1">
             <Link
               href="/events"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 active:scale-[0.98] select-none cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-lg bg-foreground text-background hover:bg-foreground/90 px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all shadow-sm active:scale-[0.98] select-none cursor-pointer"
             >
-              <Zap className="h-4 w-4" />
+              <Zap className="h-3.5 w-3.5 text-amber-400 dark:text-amber-500" />
               <span>Explore Hackathons</span>
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
 
             <Link
               href="/gallery"
-              className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card/80 hover:bg-surface-2 px-5 py-3 text-sm font-semibold text-foreground transition-all shadow-xs select-none cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card hover:bg-muted text-foreground px-4 py-2.5 text-xs sm:text-sm font-semibold transition-colors select-none cursor-pointer"
             >
-              <Trophy className="h-4 w-4 text-amber-400" />
+              <Trophy className="h-3.5 w-3.5 text-amber-500" />
               <span>Project Gallery</span>
             </Link>
 
             <Link
               href="/events/new"
-              className="inline-flex items-center gap-1.5 rounded-xl border border-border/60 bg-transparent hover:bg-surface-2/60 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors select-none cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-transparent hover:border-border hover:bg-muted/50 text-muted-foreground hover:text-foreground px-3.5 py-2.5 text-xs sm:text-sm font-semibold transition-colors select-none cursor-pointer"
             >
-              <Sparkles className="h-4 w-4 text-primary" />
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
               <span>Launch Hackathon</span>
             </Link>
           </div>
 
           {/* Interactive Live Terminal HUD */}
-          <div className="pt-4">
+          <div className="pt-2">
             <TerminalHud />
           </div>
         </div>
       </section>
 
       {/* ── Live Telemetry Pulse & Metrics Ticker ── */}
-      <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full min-w-0">
         {PLATFORM_STATS.map((stat) => {
           const Icon = stat.icon;
           return (
             <div
               key={stat.label}
-              className="rounded-2xl border border-border/70 bg-card/60 p-5 space-y-1.5 hover:border-primary/40 transition-colors shadow-xs"
+              className="rounded-xl border border-border bg-card p-4 space-y-1 hover:border-primary/40 transition-colors shadow-xs min-w-0"
             >
               <div className="flex items-center justify-between text-muted-foreground">
-                <span className="text-[11px] font-mono uppercase tracking-wider">{stat.label}</span>
-                <Icon className="h-4 w-4 text-primary/80" />
+                <span className="text-[10px] font-silkscreen uppercase tracking-wider truncate">{stat.label}</span>
+                <Icon className="h-3.5 w-3.5 text-primary shrink-0" />
               </div>
-              <div className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-foreground">
+              <div className="text-xl sm:text-2xl font-bold font-pixel tracking-wide text-foreground truncate">
                 {stat.value}
               </div>
             </div>
@@ -146,13 +144,13 @@ export default async function HomePage() {
         })}
       </section>
 
-      {/* ── Featured Hackathons (Devfolio-Grade Cards) ── */}
+      {/* ── Featured Hackathons (Classic Developer Cards) ── */}
       {publicEvents.length > 0 && (
-        <section className="space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-border/60 pb-3">
+        <section className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-border pb-3">
             <div className="space-y-1">
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-primary" />
+              <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2 font-pixel">
+                <Calendar className="h-4 w-4 text-primary" />
                 <span>Active Competitions</span>
               </h2>
               <p className="text-xs text-muted-foreground">
@@ -161,10 +159,10 @@ export default async function HomePage() {
             </div>
             <Link
               href="/events"
-              className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 self-start sm:self-auto cursor-pointer"
+              className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 shrink-0"
             >
               <span>View All Events ({publicEvents.length})</span>
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
 
@@ -174,17 +172,17 @@ export default async function HomePage() {
                 key={event.id}
                 href={`/events/${event.slug || event.id}`}
                 prefetch={true}
-                className="group block rounded-2xl border border-border/70 hover:border-primary/50 bg-card/60 hover:bg-card p-5 space-y-4 transition-all duration-200 hover:shadow-xl hover:shadow-primary/5 shadow-xs cursor-pointer select-none active:scale-[0.99]"
+                className="group block rounded-xl border border-border bg-card hover:border-primary/50 hover:bg-muted/20 p-5 space-y-3 transition-all duration-150 shadow-xs cursor-pointer select-none"
               >
                 <div className="flex items-center justify-between">
                   <StatusBadge status={event.state} size="sm" />
-                  <span className="text-[11px] text-muted-foreground/80 font-mono">
+                  <span className="text-[11px] text-muted-foreground font-mono">
                     {event.isVirtual ? "Virtual" : event.location || "In-Person"}
                   </span>
                 </div>
 
-                <div className="space-y-1.5">
-                  <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1 font-pixel">
                     {event.name}
                   </h3>
                   <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed min-h-[32px]">
@@ -192,7 +190,7 @@ export default async function HomePage() {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-border/50 flex items-center justify-between text-xs">
+                <div className="pt-2.5 border-t border-border flex items-center justify-between text-xs">
                   <div className="flex items-center gap-1 text-[11px] text-muted-foreground font-mono">
                     <Users className="h-3.5 w-3.5" />
                     <span>
@@ -200,9 +198,9 @@ export default async function HomePage() {
                     </span>
                   </div>
 
-                  <span className="font-semibold text-xs text-primary group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1 bg-primary/10 px-2.5 py-1 rounded-lg group-hover:bg-primary group-hover:text-primary-foreground">
-                    <span>Enter Event</span>
-                    <ArrowRight className="h-3 w-3" />
+                  <span className="font-semibold text-[11px] text-primary group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1 bg-primary/10 px-2.5 py-0.5 rounded border border-primary/20">
+                    <span>Enter</span>
+                    <ArrowRight className="h-2.5 w-2.5" />
                   </span>
                 </div>
               </Link>
@@ -212,39 +210,39 @@ export default async function HomePage() {
       )}
 
       {/* ── Minimalist 3-Step Hackathon Loop ── */}
-      <section className="space-y-6">
-        <div className="text-center space-y-2 max-w-xl mx-auto">
-          <Badge variant="outline" className="border-primary/30 bg-primary/10 text-primary text-[11px] font-mono uppercase tracking-wider">
+      <section className="space-y-5">
+        <div className="text-center space-y-1.5 max-w-xl mx-auto">
+          <Badge variant="outline" className="border-primary/30 bg-primary/10 text-primary text-xs font-medium">
             Engineered For Hackathons
           </Badge>
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground font-pixel">
             How The Competition Flows
           </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Zero spreadsheet confusion. Fully automated event governance from start to finish.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full min-w-0">
           {HACKATHON_LOOP.map((step) => {
             const Icon = step.icon;
             return (
               <div
                 key={step.step}
-                className="group relative rounded-2xl border border-border/70 bg-card/50 p-6 space-y-4 hover:border-primary/40 hover:bg-card transition-all duration-200 shadow-xs"
+                className="group relative rounded-xl border border-border bg-card p-4 sm:p-5 space-y-3 hover:border-primary/40 hover:bg-muted/20 transition-all shadow-xs min-w-0"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-black text-primary/80 bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">
+                  <span className="font-mono text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">
                     STEP {step.step}
                   </span>
-                  <span className="text-[10px] font-mono text-muted-foreground bg-muted/40 px-2 py-0.5 rounded border border-border/40">
+                  <span className="text-[11px] font-mono text-muted-foreground bg-muted/50 px-2 py-0.5 rounded border border-border">
                     {step.tag}
                   </span>
                 </div>
 
-                <div className="space-y-2">
-                  <h3 className="text-base font-bold text-foreground flex items-center gap-2">
-                    <Icon className="h-4 w-4 text-primary" />
+                <div className="space-y-1.5">
+                  <h3 className="text-sm font-bold text-foreground flex items-center gap-2 font-pixel">
+                    <Icon className="h-3.5 w-3.5 text-primary" />
                     <span>{step.title}</span>
                   </h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">
@@ -258,33 +256,33 @@ export default async function HomePage() {
       </section>
 
       {/* ── Self-Host / Command CTA ── */}
-      <section className="relative overflow-hidden rounded-3xl border border-border/80 bg-surface-1/70 p-8 sm:p-12 text-center space-y-6 shadow-xl">
-        <div className="space-y-2 max-w-lg mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+      <section className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-8 text-center space-y-4 shadow-sm">
+        <div className="space-y-1.5 max-w-lg mx-auto">
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground font-pixel">
             Ready to host your own hackathon?
           </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Deploy RaptorOS on bare metal or internal cloud in under 60 seconds.
           </p>
         </div>
 
         {/* Quick Shell Command Chip */}
-        <div className="inline-flex items-center gap-2 rounded-xl bg-surface-0/80 border border-border/80 px-4 py-2 text-xs font-mono text-foreground/90 shadow-inner">
-          <span className="text-emerald-400 select-none">$</span>
-          <span className="text-emerald-300">git clone && docker compose up -d --build</span>
+        <div className="inline-flex items-center gap-2 rounded-lg bg-muted/60 border border-border px-3.5 py-1.5 text-xs font-mono text-foreground shadow-xs">
+          <span className="text-primary font-bold select-none">$</span>
+          <span>git clone && docker compose up -d --build</span>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
           <Link
             href="/events/new"
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-xs sm:text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all shadow-md shadow-primary/20 active:scale-[0.98] cursor-pointer"
+            className="inline-flex items-center gap-2 rounded-lg bg-foreground text-background hover:bg-foreground/90 px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all shadow-sm active:scale-[0.98] cursor-pointer"
           >
             <span>Launch Event Wizard</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
           <Link
             href="/events"
-            className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/80 hover:bg-surface-2 px-5 py-2.5 text-xs sm:text-sm font-medium text-foreground transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card hover:bg-muted px-4 py-2.5 text-xs sm:text-sm font-semibold text-foreground transition-colors cursor-pointer"
           >
             <span>Explore Live Events</span>
           </Link>

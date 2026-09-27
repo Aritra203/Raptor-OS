@@ -86,10 +86,10 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
         {/* Header */}
         <div className="flex h-14 items-center justify-between border-b border-border px-5">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 text-primary">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/25 text-primary">
               <Zap className="h-4 w-4" />
             </div>
-            <span className="text-sm font-bold tracking-tight text-foreground">
+            <span className="text-base font-bold tracking-wider text-foreground font-pixel">
               RaptorOS
             </span>
           </div>
@@ -114,7 +114,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors",
+                  "flex items-center gap-3 rounded-lg px-4 py-3 text-xs font-silkscreen font-bold uppercase tracking-wider transition-colors",
                   active
                     ? "bg-primary/10 text-primary"
                     : "text-muted-foreground hover:bg-muted/40 hover:text-foreground"

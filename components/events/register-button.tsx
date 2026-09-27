@@ -75,14 +75,14 @@ export function RegisterButton({
 
       {isRegistered ? (
         <div className="flex items-center gap-3">
-          <div className="inline-flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-md font-medium">
+          <div className="inline-flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-md font-bold font-silkscreen uppercase tracking-wider">
             <UserCheck className="h-4 w-4" />
             <span>Registered as Participant</span>
           </div>
           <button
             onClick={handleCancel}
             disabled={isLoading}
-            className="text-xs text-muted-foreground hover:text-destructive transition-colors underline underline-offset-4"
+            className="text-[11px] font-silkscreen uppercase tracking-wider text-muted-foreground hover:text-destructive transition-colors underline underline-offset-4"
           >
             {isLoading ? "Cancelling..." : "Cancel Registration"}
           </button>

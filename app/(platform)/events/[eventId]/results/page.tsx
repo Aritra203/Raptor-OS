@@ -32,23 +32,24 @@ export default async function PublicResultsPage({
   const { event, isPublished, publishedAt, version, results } = data;
 
   if (!isPublished) {
+    const isResultsPhase = event.state === "RESULTS_PUBLISHED";
     return (
       <div className="max-w-3xl mx-auto py-16 px-4 text-center space-y-6">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-2">
-          <Lock className="h-8 w-8" />
+          {isResultsPhase ? <Trophy className="h-8 w-8 text-amber-500" /> : <Lock className="h-8 w-8" />}
         </div>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">
-          Results Not Yet Published
+        <h1 className="text-2xl font-bold tracking-tight text-foreground font-pixel">
+          {isResultsPhase ? "No Final Results Recorded" : "Results Not Yet Published"}
         </h1>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
-          Judging evaluations and score normalizations for{" "}
-          <span className="font-semibold text-foreground">{event.name}</span> are currently in
-          progress or undergoing organizer review. Check back once official results have been published.
+          {isResultsPhase
+            ? `Official results for ${event.name} have been declared, but no ranked submissions were published in the final results snapshot.`
+            : `Judging evaluations and score normalizations for ${event.name} are currently in progress or undergoing organizer review. Check back once official results have been published.`}
         </p>
         <div>
           <Link
             href={`/events/${event.slug || eventId}`}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-bold font-silkscreen uppercase tracking-wider text-primary hover:underline"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             <span>Return to Event Overview</span>
@@ -78,17 +79,17 @@ export default async function PublicResultsPage({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-[11px] bg-amber-500/10 text-amber-400 border-amber-500/30">
+              <Badge variant="outline" className="text-[11px] bg-amber-500/10 text-amber-400 border-amber-500/30 font-silkscreen">
                 <Trophy className="h-3 w-3 mr-1" />
                 <span>Official Results (v{version})</span>
               </Badge>
               {publishedAt && (
-                <span className="text-xs text-muted-foreground">
+                <span className="text-xs text-muted-foreground font-silkscreen">
                   Published {new Date(publishedAt).toLocaleDateString()}
                 </span>
               )}
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground font-pixel">
               {event.name} — Winners & Placements
             </h1>
             <p className="text-xs text-muted-foreground">
@@ -115,7 +116,7 @@ export default async function PublicResultsPage({
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <span
-                    className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold ${
+                    className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold font-pixel ${
                       item.rank === 1
                         ? "bg-amber-500/20 text-amber-400"
                         : item.rank === 2
@@ -126,12 +127,12 @@ export default async function PublicResultsPage({
                     #{item.rank}
                   </span>
                   {item.prize && (
-                    <Badge variant="outline" className="text-[10px] bg-amber-500/10 text-amber-400 border-amber-500/30">
+                    <Badge variant="outline" className="text-[10px] bg-amber-500/10 text-amber-400 border-amber-500/30 font-silkscreen">
                       🏆 {item.prize.name}
                     </Badge>
                   )}
                 </div>
-                <CardTitle className="text-base font-bold text-foreground mt-2 line-clamp-1">
+                <CardTitle className="text-base font-bold text-foreground mt-2 line-clamp-1 font-pixel tracking-wide">
                   {item.submission.title}
                 </CardTitle>
                 <p className="text-xs text-muted-foreground">
@@ -191,9 +192,14 @@ export default async function PublicResultsPage({
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead className="border-b border-border text-muted-foreground font-medium">
+          {results.length === 0 ? (
+            <div className="py-12 text-center text-muted-foreground text-xs">
+              No ranked submissions recorded in this published results snapshot.
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead className="border-b border-border text-muted-foreground font-silkscreen uppercase tracking-wider text-[11px]">
                 <tr>
                   <th className="py-2.5 px-3 text-center w-12">Rank</th>
                   <th className="py-2.5 px-3">Project & Team</th>
@@ -264,6 +270,7 @@ export default async function PublicResultsPage({
               </tbody>
             </table>
           </div>
+          )}
         </CardContent>
       </Card>
     </div>

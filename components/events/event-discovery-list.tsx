@@ -249,7 +249,7 @@ export function EventDiscoveryList({ initialEvents }: EventDiscoveryListProps) {
                   <CardContent className="flex-1 flex flex-col p-5 pt-3 space-y-4">
                     {/* Title & Description */}
                     <div className="space-y-1.5 flex-1">
-                      <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                      <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1 font-pixel tracking-wide">
                         {event.name}
                       </h3>
                       <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed min-h-[32px]">

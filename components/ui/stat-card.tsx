@@ -48,7 +48,7 @@ export function StatCard({
       )}
     >
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-bold font-silkscreen text-muted-foreground uppercase tracking-wider">
           {label}
         </span>
         {icon && (
@@ -56,7 +56,7 @@ export function StatCard({
         )}
       </div>
       <div className="flex items-end gap-2">
-        <span className={cn("text-2xl font-bold tabular-nums", valueStyles[variant])}>
+        <span className={cn("text-2xl font-bold font-pixel tabular-nums", valueStyles[variant])}>
           {value}
         </span>
         {trend && (

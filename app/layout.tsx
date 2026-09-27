@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
+import { Pixelify_Sans, Silkscreen } from "next/font/google";
 import "@/app/globals.css";
+
+const pixelify = Pixelify_Sans({
+  subsets: ["latin"],
+  variable: "--font-pixelify",
+  display: "swap",
+});
+
+const silkscreen = Silkscreen({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-silkscreen",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "RaptorOS — Hackathon Operating System",
@@ -12,8 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className={`dark ${pixelify.variable} ${silkscreen.variable} overflow-x-hidden`} suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -30,7 +50,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-background font-sans text-foreground antialiased selection:bg-emerald-500/20 selection:text-emerald-300">
+      <body className="min-h-screen bg-background font-sans text-foreground antialiased selection:bg-amber-500/20 selection:text-amber-400 overflow-x-hidden w-full max-w-full">
         {/* Accessibility Skip Link */}
         <a
           href="#main-content"

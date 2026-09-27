@@ -477,6 +477,7 @@ export class ResultsService {
         slug: true,
         state: true,
         description: true,
+        updatedAt: true,
       },
     });
 
@@ -487,6 +488,46 @@ export class ResultsService {
     const publishedSnapshot = await resultsRepository.findPublishedSnapshot(event.id);
 
     if (!publishedSnapshot) {
+      // Compatibility fallback: check legacy published results table
+      const legacyResults = await prisma.result.findMany({
+        where: { eventId: event.id, isPublished: true },
+        include: {
+          submission: {
+            include: { team: { select: { id: true, name: true, slug: true } } },
+          },
+          track: { select: { id: true, name: true, slug: true } },
+          prize: { select: { id: true, name: true, value: true } },
+        },
+        orderBy: { rank: "asc" },
+      });
+
+      if (legacyResults.length > 0) {
+        return {
+          event,
+          isPublished: true,
+          publishedAt: event.updatedAt,
+          version: 1,
+          results: legacyResults.map((r) => ({
+            id: r.id,
+            rank: r.rank ?? 1,
+            trackRank: null,
+            finalScore: Number(r.finalScore).toFixed(2),
+            submission: {
+              id: r.submission.id,
+              title: r.submission.title,
+              description: r.submission.description,
+              repositoryUrl: r.submission.repositoryUrl,
+              demoUrl: r.submission.demoUrl,
+              deploymentUrl: r.submission.deploymentUrl,
+              documentationUrl: r.submission.documentationUrl,
+              teamName: r.submission.team.name,
+            },
+            track: r.track ? { id: r.track.id, name: r.track.name } : null,
+            prize: r.prize ? { id: r.prize.id, name: r.prize.name, value: r.prize.value } : null,
+          })),
+        };
+      }
+
       return {
         event,
         isPublished: false,

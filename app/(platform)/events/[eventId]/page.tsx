@@ -160,7 +160,7 @@ export default async function EventDetailPage({
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-[1.1]">
+              <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground leading-[1.1] font-pixel">
                 {event.name}
               </h1>
               <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
@@ -180,7 +180,7 @@ export default async function EventDetailPage({
             {event.state === "RESULTS_PUBLISHED" && (
               <Link
                 href={`/events/${event.slug || event.id}/results`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500/15 border border-amber-500/30 px-5 py-3 text-sm font-semibold text-amber-400 hover:bg-amber-500/25 transition-all shadow-sm"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500/15 border border-amber-500/30 px-5 py-3 text-xs font-bold font-silkscreen uppercase tracking-wider text-amber-400 hover:bg-amber-500/25 transition-all shadow-sm"
               >
                 <Trophy className="h-4 w-4" />
                 <span>View Final Results</span>
@@ -190,7 +190,7 @@ export default async function EventDetailPage({
             {isOrganizer && (
               <Link
                 href={`/events/${event.slug || event.id}/manage`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary/20 transition-all shadow-sm"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-5 py-2.5 text-xs font-bold font-silkscreen uppercase tracking-wider text-primary hover:bg-primary/20 transition-all shadow-sm"
               >
                 <Settings className="h-4 w-4" />
                 <span>Organizer Console</span>
@@ -200,7 +200,7 @@ export default async function EventDetailPage({
             {!auth ? (
               <Link
                 href={`/login?redirect=/events/${event.slug || event.id}`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-xs font-bold font-silkscreen uppercase tracking-wider text-primary-foreground hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
               >
                 <span>Sign In to Register</span>
                 <ArrowRight className="h-4 w-4" />
@@ -211,7 +211,7 @@ export default async function EventDetailPage({
                 {userTeam ? (
                   <Link
                     href={`/events/${event.slug || event.id}/team`}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-card/70 hover:bg-muted/50 px-4 py-2.5 text-xs font-semibold text-foreground transition-colors"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-card/70 hover:bg-muted/50 px-4 py-2.5 text-xs font-bold font-silkscreen uppercase tracking-wider text-foreground transition-colors"
                   >
                     <Users className="h-3.5 w-3.5 text-primary" />
                     <span>My Team ({userTeam.name})</span>
@@ -220,7 +220,7 @@ export default async function EventDetailPage({
                 ) : (
                   <Link
                     href={`/events/${event.slug || event.id}/team`}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary/90 hover:bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground transition-all shadow-sm"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary/90 hover:bg-primary px-4 py-2.5 text-xs font-bold font-silkscreen uppercase tracking-wider text-primary-foreground transition-all shadow-sm"
                   >
                     <span>Form / Join a Team</span>
                     <ArrowRight className="h-3 w-3" />
@@ -230,7 +230,7 @@ export default async function EventDetailPage({
             ) : isRegistrationOpen ? (
               <RegisterButton eventId={event.id} isRegistered={false} />
             ) : (
-              <div className="inline-flex items-center justify-center gap-2 text-xs text-muted-foreground bg-muted/20 border border-border px-4 py-3 rounded-xl">
+              <div className="inline-flex items-center justify-center gap-2 text-xs font-bold font-silkscreen uppercase tracking-wider text-muted-foreground bg-muted/20 border border-border px-4 py-3 rounded-xl">
                 <Clock className="h-4 w-4" />
                 <span>Registration Closed</span>
               </div>
