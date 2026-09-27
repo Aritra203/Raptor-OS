@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Menu,
@@ -42,9 +43,9 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface-1/95 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 w-full min-w-0">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8 w-full min-w-0">
         {/* Left: Brand & Main Navigation */}
-        <div className="flex items-center gap-3 xl:gap-5 min-w-0">
+        <div className="flex items-center gap-2 sm:gap-3 xl:gap-5 min-w-0 shrink-0">
           {/* Mobile hamburger */}
           <button
             type="button"
@@ -56,15 +57,22 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
           </button>
 
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 border border-primary/25 text-primary group-hover:bg-primary/20 transition-colors">
-              <span className="font-bold text-xs tracking-tighter">R</span>
+          <Link href="/" className="flex items-center gap-2 group shrink-0 select-none">
+            <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500/10 via-blue-500/15 to-primary/10 border border-sky-500/30 group-hover:border-sky-400/60 p-0.5 shadow-xs transition-all duration-200 shrink-0">
+              <Image
+                src="/logo-icon.png"
+                alt="RaptorOS Logo"
+                width={32}
+                height={32}
+                className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(14,165,233,0.35)] group-hover:scale-110 transition-transform duration-200"
+                priority
+              />
             </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-base font-bold tracking-wider text-foreground font-pixel">
+            <div className="flex items-baseline gap-1.5 shrink-0">
+              <span className="text-base font-bold tracking-wider text-foreground font-pixel whitespace-nowrap">
                 RaptorOS
               </span>
-              <span className="text-[10px] font-mono text-muted-foreground/60 hidden sm:inline">
+              <span className="text-[10px] font-mono text-muted-foreground/60 hidden sm:inline whitespace-nowrap">
                 v0.1
               </span>
             </div>
@@ -102,11 +110,11 @@ export function Navbar({ onMenuToggle, onSearchClick }: NavbarProps) {
 
         {/* Right: Actions, Search, Theme Toggle & User Menu */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          {/* Quick Search (⌘K) */}
+          {/* Quick Search (⌘K) - Hidden on mobile, accessible in mobile drawer */}
           <button
             type="button"
             onClick={onSearchClick}
-            className="flex items-center gap-1.5 rounded-lg border border-border/80 bg-background/60 px-2 py-1.5 text-xs text-muted-foreground cursor-pointer hover:border-primary/40 hover:text-foreground transition-all shrink-0"
+            className="hidden md:flex items-center gap-1.5 rounded-lg border border-border/80 bg-background/60 px-2 py-1.5 text-xs text-muted-foreground cursor-pointer hover:border-primary/40 hover:text-foreground transition-all shrink-0"
             aria-label="Open command search"
             title="Search... (⌘K)"
           >

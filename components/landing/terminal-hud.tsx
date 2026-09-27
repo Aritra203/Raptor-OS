@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 interface TerminalTab {
   id: string;
   name: string;
+  shortName: string;
   command: string;
   output: Array<{
     text: string;
@@ -18,6 +19,7 @@ const TABS: TerminalTab[] = [
   {
     id: "status",
     name: "01_event_telemetry.sh",
+    shortName: "telemetry",
     command: "raptor telemetry --event sample-hack-2026",
     output: [
       { text: "Connecting to local ledger [raptoros:5432] ...", type: "dim" },
@@ -32,6 +34,7 @@ const TABS: TerminalTab[] = [
   {
     id: "submit",
     name: "02_ship_project.sh",
+    shortName: "ship",
     command: "raptor submit --team 'IronLedger' --track 'Health'",
     output: [
       { text: "Validating submission deliverables...", type: "dim" },
@@ -45,6 +48,7 @@ const TABS: TerminalTab[] = [
   {
     id: "judge",
     name: "03_peer_scoring.sh",
+    shortName: "scoring",
     command: "raptor judge --evaluator clara --submission prj_09",
     output: [
       { text: "Loading multi-criteria rubric: Tech (40%), UX (30%), Impact (30%)", type: "dim" },
@@ -72,7 +76,7 @@ export function TerminalHud() {
   return (
     <div className="relative rounded-xl border border-zinc-300 dark:border-zinc-800/80 bg-[#0d0e15] text-zinc-100 shadow-lg overflow-hidden text-left w-full max-w-full min-w-0">
       {/* Terminal Titlebar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800/80 bg-[#13151f] px-3 sm:px-4 py-2 gap-2 w-full min-w-0">
+      <div className="flex items-center justify-between border-b border-zinc-800/80 bg-[#13151f] px-3 sm:px-4 py-2 gap-2 w-full min-w-0">
         <div className="flex items-center gap-2 shrink-0">
           <div className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-rose-500/90 inline-block" />
@@ -97,7 +101,8 @@ export function TerminalHud() {
                   : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50"
               )}
             >
-              {tab.name}
+              <span className="hidden sm:inline">{tab.name}</span>
+              <span className="sm:hidden">{tab.shortName}</span>
             </button>
           ))}
         </div>

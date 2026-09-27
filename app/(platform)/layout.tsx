@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/navbar";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { CommandMenu } from "@/components/ui/command-menu";
@@ -25,7 +26,14 @@ export default function PlatformLayout({
         />
 
         {/* Mobile Navigation Drawer */}
-        <MobileNav open={mobileNavOpen} onClose={() => setMobileNavOpen(false)} />
+        <MobileNav
+          open={mobileNavOpen}
+          onClose={() => setMobileNavOpen(false)}
+          onSearchClick={() => {
+            setMobileNavOpen(false);
+            setCommandMenuOpen(true);
+          }}
+        />
 
         {/* Global Keyboard Command Menu */}
         <CommandMenu open={commandMenuOpen} onOpenChange={setCommandMenuOpen} />
@@ -44,17 +52,24 @@ export default function PlatformLayout({
         {/* Minimal Platform Footer */}
         <footer className="border-t border-border/70 bg-surface-1/40 py-6 text-xs text-muted-foreground">
           <div className="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
+              <Image
+                src="/logo-icon.png"
+                alt="RaptorOS"
+                width={20}
+                height={20}
+                className="h-5 w-5 object-contain filter drop-shadow-[0_0_4px_rgba(14,165,233,0.3)]"
+              />
               <span className="font-semibold text-foreground">RaptorOS</span>
               <span>·</span>
               <span className="font-mono text-[11px]">DOGFOOD 2026 Edition</span>
             </div>
 
             <div className="flex items-center gap-4 text-[11px]">
-              <div className="flex items-center gap-1.5">
+              {/* <div className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 <span>100% Offline-First</span>
-              </div>
+              </div> */}
               <Link href="/events" className="hover:text-foreground transition-colors">
                 Hackathons
               </Link>

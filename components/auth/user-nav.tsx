@@ -58,18 +58,18 @@ export function UserNav() {
   const primaryRole = user.eventMemberships?.[0]?.role;
 
   return (
-    <div className="flex items-center gap-3 shrink-0">
+    <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
       <Link
         href="/account"
-        className="flex items-center gap-2 rounded-md border border-border bg-muted/30 px-3 py-1 text-xs text-foreground hover:bg-muted/60 transition-colors"
+        className="flex items-center gap-1.5 sm:gap-2 rounded-md border border-border bg-muted/30 px-2 sm:px-3 py-1 text-xs text-foreground hover:bg-muted/60 transition-colors shrink-0"
         title="View Account & Sessions"
       >
-        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/20 text-primary text-[10px] font-bold">
+        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/20 text-primary text-[10px] font-bold shrink-0">
           {user.name ? user.name.charAt(0).toUpperCase() : "U"}
         </div>
-        <span className="font-medium max-w-[120px] truncate">{user.name}</span>
+        <span className="font-medium max-w-[80px] sm:max-w-[120px] truncate hidden sm:inline">{user.name}</span>
         {primaryRole && (
-          <span className="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400 border border-emerald-500/20">
+          <span className="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400 border border-emerald-500/20 hidden md:inline">
             {primaryRole}
           </span>
         )}

@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Calendar,
   Users,
@@ -62,6 +63,18 @@ export default async function HomePage() {
       <section className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8 md:p-10 shadow-sm w-full min-w-0">
         {/* Subtle retro grid pattern */}
         <div className="absolute inset-0 bg-grid-cyber pointer-events-none opacity-60" />
+
+        {/* Ambient raptor logo mascot in hero corner - clearly visible in light and dark modes */}
+        <div className="absolute top-2 sm:top-4 right-0 sm:right-4 md:right-8 w-56 h-56 sm:w-72 sm:h-72 md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] opacity-35 sm:opacity-85 md:opacity-95 dark:opacity-30 dark:sm:opacity-45 dark:md:opacity-55 pointer-events-none select-none transition-all">
+          <Image
+            src="/logo-icon.png"
+            alt="RaptorOS Emblem"
+            fill
+            sizes="(max-width: 768px) 256px, 384px"
+            className="object-contain filter drop-shadow-[0_10px_25px_rgba(14,165,233,0.22)] dark:drop-shadow-[0_0_30px_rgba(14,165,233,0.35)]"
+            priority
+          />
+        </div>
 
         <div className="relative z-10 space-y-6 max-w-4xl w-full min-w-0">
           {/* Status Beacon & Tags */}
@@ -267,8 +280,8 @@ export default async function HomePage() {
         </div>
 
         {/* Quick Shell Command Chip */}
-        <div className="inline-flex items-center gap-2 rounded-lg bg-muted/60 border border-border px-3.5 py-1.5 text-xs font-mono text-foreground shadow-xs">
-          <span className="text-primary font-bold select-none">$</span>
+        <div className="inline-flex max-w-full items-center gap-2 rounded-lg bg-muted/60 border border-border px-3.5 py-1.5 text-[11px] sm:text-xs font-mono text-foreground shadow-xs overflow-x-auto scrollbar-none">
+          <span className="text-primary font-bold select-none shrink-0">$</span>
           <span>git clone && docker compose up -d --build</span>
         </div>
 

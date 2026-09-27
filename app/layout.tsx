@@ -18,6 +18,11 @@ const silkscreen = Silkscreen({
 export const metadata: Metadata = {
   title: "RaptorOS — Hackathon Operating System",
   description: "Run your hackathon from registration to results. Offline-first, self-hostable hackathon management and judging platform.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -28,6 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${pixelify.variable} ${silkscreen.variable} overflow-x-hidden`} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
