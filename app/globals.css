@@ -1,0 +1,328 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Light Mode Surface & Background (Devfolio / Clean SaaS) ── */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* ── Brand / Primary (RaptorOS Emerald) ── */
+    --primary: 158 64% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    /* ── Secondary / Muted ── */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* ── Accent ── */
+    --accent: 210 40% 94%;
+    --accent-foreground: 222 47% 11%;
+
+    /* ── Semantic Colors ── */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 158 64% 38%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 224 71% 4%;
+    --info: 217 91% 60%;
+    --info-foreground: 210 40% 98%;
+
+    /* ── Chrome ── */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 158 64% 38%;
+    --radius: 0.625rem;
+
+    /* ── Surface Elevation ── */
+    --surface-0: 0 0% 100%;
+    --surface-1: 210 40% 98%;
+    --surface-2: 210 40% 95%;
+    --surface-3: 210 40% 92%;
+
+    /* ── Overlay ── */
+    --overlay: 224 71% 2% / 0.5;
+  }
+
+  .dark {
+    /* ── Dark Mode Surface & Background (Deep Obsidian / Refined Charcoal) ── */
+    --background: 224 71% 4%;
+    --foreground: 210 40% 98%;
+    --card: 223 44% 7%;
+    --card-foreground: 210 40% 98%;
+    --popover: 223 44% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    /* ── Brand / Primary (RaptorOS Emerald) ── */
+    --primary: 158 64% 50%;
+    --primary-foreground: 224 71% 4%;
+
+    /* ── Secondary / Muted ── */
+    --secondary: 220 30% 12%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 30% 13%;
+    --muted-foreground: 215 20% 65%;
+
+    /* ── Accent ── */
+    --accent: 220 30% 16%;
+    --accent-foreground: 210 40% 98%;
+
+    /* ── Semantic Colors ── */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 158 64% 45%;
+    --success-foreground: 210 40% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 224 71% 4%;
+    --info: 217 91% 60%;
+    --info-foreground: 210 40% 98%;
+
+    /* ── Chrome ── */
+    --border: 218 28% 16%;
+    --input: 218 28% 16%;
+    --ring: 158 64% 50%;
+
+    /* ── Surface Elevation ── */
+    --surface-0: 224 71% 4%;
+    --surface-1: 223 47% 6.5%;
+    --surface-2: 223 40% 9%;
+    --surface-3: 222 35% 12%;
+
+    /* ── Overlay ── */
+    --overlay: 224 71% 2% / 0.85;
+  }
+}
+
+/* ── Global Resets ── */
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "rlig" 1, "calt" 1;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Accessible Focus ── */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted)) transparent;
+}
+
+/* ── Animations ── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-to-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.12; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes progress-fill {
+  from { width: 0; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Utility Classes ── */
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.3s ease-out;
+  }
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out;
+  }
+  .animate-slide-in-right {
+    animation: slide-in-from-right 0.3s ease-out;
+  }
+  .animate-slide-out-right {
+    animation: slide-out-to-right 0.2s ease-out forwards;
+  }
+  .animate-skeleton {
+    animation: skeleton-pulse 2s ease-in-out infinite;
+  }
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--muted) / 0.15) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(172 66% 60%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass surface */
+  .glass {
+    background: hsl(var(--card) / 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Interactive card with micro-elevation */
+  .card-interactive {
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card-interactive:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: 0 10px 25px -5px hsl(var(--primary) / 0.08), 0 8px 10px -6px hsl(var(--background) / 0.5);
+  }
+
+  /* Subtle glow for hero sections and key CTA elements */
+  .glow-primary {
+    box-shadow: 0 0 60px -12px hsl(var(--primary) / 0.2);
+  }
+
+  .glow-subtle {
+    box-shadow: 0 0 30px -8px hsl(var(--primary) / 0.1);
+  }
+
+  /* Hackathon Cyber Grid Pattern */
+  .bg-grid-cyber {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+  }
+
+  .dark .bg-grid-cyber {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  }
+}
+
+/* ── Print Media Optimization (e.g. Certificates) ── */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  aside, header, nav, button, .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-certificate {
+    box-shadow: none !important;
+    border: 2px solid #000 !important;
+    margin: 0 auto !important;
+  }
+}

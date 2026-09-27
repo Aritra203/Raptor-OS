@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.gitignore
+.env
+.env*.local
+coverage
+e2e
+tests
+test-results
+playwright-report
+*.md
+.vscode
+.idea
+app/(platform)/events/*slug*
+**/\[slug\]/**

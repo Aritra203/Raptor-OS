@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: raptoros-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-raptor}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-raptor_secret_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-raptoros}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-raptor} -d $${POSTGRES_DB:-raptoros}"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - raptor-network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: raptoros-web
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-raptor}:${POSTGRES_PASSWORD:-raptor_secret_pass}@postgres:5432/${POSTGRES_DB:-raptoros}?schema=public
+      NEXT_PUBLIC_APP_NAME: "RaptorOS"
+      NEXT_PUBLIC_APP_VERSION: "0.1.0"
+    ports:
+      - "${PORT:-3000}:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/api/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+    networks:
+      - raptor-network
+
+volumes:
+  postgres_data:
+    name: raptoros_postgres_data
+
+networks:
+  raptor-network:
+    name: raptoros_network
+    driver: bridge
