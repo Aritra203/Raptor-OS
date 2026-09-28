@@ -22,6 +22,7 @@ import { AssignmentGenerator } from "@/components/judging/assignment-generator";
 import { JudgingProgressCard } from "@/components/judging/judging-progress-card";
 import { OrganizerResultsDashboard } from "@/components/results/organizer-results-dashboard";
 import { OrganizerCommunityDashboard } from "@/components/community/organizer-community-dashboard";
+import { EventAuditTrail } from "@/components/events/event-audit-trail";
 
 const NEXT_STATE_ACTIONS: Record<EventState, { target: EventState; label: string; desc: string }[]> = {
   DRAFT: [
@@ -134,7 +135,7 @@ interface OrganizerDashboardProps {
 export function OrganizerDashboard({ event }: OrganizerDashboardProps) {
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState<
-    "lifecycle" | "submissions" | "participants" | "teams" | "tracks" | "prizes" | "judging" | "results" | "community"
+    "lifecycle" | "submissions" | "participants" | "teams" | "tracks" | "prizes" | "judging" | "results" | "community" | "audit"
   >("lifecycle");
   const [judgingSubTab, setJudgingSubTab] = React.useState<"progress" | "assignments" | "rubrics">("progress");
 
@@ -439,6 +440,17 @@ export function OrganizerDashboard({ event }: OrganizerDashboardProps) {
           }`}
         >
           Community & Voting
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("audit")}
+          className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer ${
+            activeTab === "audit"
+              ? "bg-card text-primary shadow-sm border border-border"
+              : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+          }`}
+        >
+          Audit Trail
         </button>
       </div>
 
@@ -1025,6 +1037,11 @@ export function OrganizerDashboard({ event }: OrganizerDashboardProps) {
       {/* Tab: Community & Voting */}
       {activeTab === "community" && (
         <OrganizerCommunityDashboard eventId={event.id} />
+      )}
+
+      {/* Tab: Audit Trail & Ledger */}
+      {activeTab === "audit" && (
+        <EventAuditTrail eventId={event.id} />
       )}
     </div>
   );
