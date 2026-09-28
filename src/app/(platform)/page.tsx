@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { eventService } from "@/server/services/event.service";
 import { TerminalHud } from "@/components/landing/terminal-hud";
+import { CyberMeshBackground } from "@/components/ui/cyber-mesh-background";
 
 export const dynamic = "force-dynamic";
 
@@ -61,8 +62,8 @@ export default async function HomePage() {
     <div className="space-y-16 pb-20 max-w-6xl mx-auto w-full min-w-0">
       {/* ── Hero Section (Classic Retro Studio / Hacker Atmosphere) ── */}
       <section className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-8 md:p-10 shadow-sm w-full min-w-0">
-        {/* Subtle retro grid pattern */}
-        <div className="absolute inset-0 bg-grid-cyber pointer-events-none opacity-60" />
+        {/* Animated 3D Cybernetic Mesh Wave & Radar Sweep */}
+        <CyberMeshBackground />
 
         {/* Ambient raptor logo mascot in hero corner - clearly visible in light and dark modes */}
         <div className="absolute top-2 sm:top-4 right-0 sm:right-4 md:right-8 w-56 h-56 sm:w-72 sm:h-72 md:w-[320px] md:h-[320px] lg:w-[380px] lg:h-[380px] opacity-35 sm:opacity-85 md:opacity-95 dark:opacity-30 dark:sm:opacity-45 dark:md:opacity-55 pointer-events-none select-none transition-all">

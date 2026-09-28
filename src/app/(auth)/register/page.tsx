@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Zap, Shield, ArrowRight, AlertCircle } from "lucide-react";
+import { Shield, ArrowRight, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -65,14 +66,21 @@ export default function RegisterPage() {
       <div className="hidden lg:flex lg:w-1/2 flex-col justify-between bg-gradient-to-br from-surface-2 via-surface-1 to-background p-12 border-r border-border relative overflow-hidden">
         <div className="absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
         <div>
-          <div className="flex items-center gap-2.5 mb-12">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 text-primary">
-              <Zap className="h-4.5 w-4.5" />
+          <Link href="/" className="flex items-center gap-2.5 mb-12 group select-none">
+            <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500/10 via-blue-500/15 to-primary/10 border border-sky-500/30 group-hover:border-sky-400/60 p-0.5 shadow-xs transition-all">
+              <Image
+                src="/logo-icon.png"
+                alt="RaptorOS Logo"
+                width={36}
+                height={36}
+                className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(14,165,233,0.35)] group-hover:scale-105 transition-transform"
+                priority
+              />
             </div>
-            <span className="text-lg font-bold tracking-tight text-foreground">
+            <span className="text-xl font-bold tracking-tight text-foreground font-pixel">
               RaptorOS
             </span>
-          </div>
+          </Link>
           <div className="space-y-4 max-w-md">
             <h2 className="text-3xl font-extrabold tracking-tight text-foreground leading-tight">
               Join the
@@ -95,9 +103,21 @@ export default function RegisterPage() {
         <div className="w-full max-w-sm space-y-8">
           {/* Mobile brand */}
           <div className="text-center space-y-3 lg:space-y-2">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary lg:hidden">
-              <Zap className="h-6 w-6" />
-            </div>
+            <Link href="/" className="inline-flex items-center gap-2.5 mx-auto lg:hidden select-none">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500/10 via-blue-500/15 to-primary/10 border border-sky-500/30 p-0.5 shadow-xs">
+                <Image
+                  src="/logo-icon.png"
+                  alt="RaptorOS Logo"
+                  width={40}
+                  height={40}
+                  className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(14,165,233,0.35)]"
+                  priority
+                />
+              </div>
+              <span className="text-xl font-bold tracking-tight text-foreground font-pixel">
+                RaptorOS
+              </span>
+            </Link>
             <h1 className="text-2xl font-bold tracking-tight text-foreground">
               Create account
             </h1>

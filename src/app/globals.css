@@ -231,6 +231,23 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: rotate(360deg); }
 }
 
+@keyframes radar-sweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  80% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(400%);
+    opacity: 0;
+  }
+}
+
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -245,6 +262,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Utility Classes ── */
 @layer utilities {
+  .animate-radar-sweep {
+    animation: radar-sweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
   .animate-fade-in {
     animation: fade-in 0.2s ease-out;
   }
