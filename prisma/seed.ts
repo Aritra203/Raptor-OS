@@ -2,7 +2,7 @@ import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { PrismaClient, EventState, EventRole, MembershipStatus, TeamMemberRole, InvitationStatus, SubmissionState, AssignmentStatus, RunStatus, CertificateType, VotingEligibilityMode, CommentModerationStatus, AbuseSignalStatus, AbuseSignalSeverity } from "@prisma/client";
-import { hashPassword } from "../server/auth/password";
+import { hashPassword } from "../src/server/auth/password";
 
 const prisma = new PrismaClient();
 
