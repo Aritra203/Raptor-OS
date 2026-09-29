@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Pixelify_Sans, Silkscreen } from "next/font/google";
+import { CyberCursor } from "@/components/ui/cyber-cursor";
 import "@/app/globals.css";
 
 const pixelify = Pixelify_Sans({
@@ -66,6 +67,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <CyberCursor />
         {children}
       </body>
     </html>
